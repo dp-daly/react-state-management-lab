@@ -101,6 +101,7 @@ const App = () => {
   }
 
 //Stuck with reduce to be able to have an initial value and a return value to call within the jsx return (was having issues with lag with my other solutions)
+//I appreciate I'm not actually updating state here though, only displaying what I need on the UI ... 
  function getTotalStrength() {
   //Since we're not mutating the state of the original array, I haven't cloned here.
   return team.reduce((total, member) => {
