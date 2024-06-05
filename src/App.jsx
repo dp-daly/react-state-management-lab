@@ -109,12 +109,19 @@ const App = () => {
     , 0);
 }
 
+//I have not created a state for this given the above workaround, but I plan to refactor.
+function getTotalAgility() {
+  return team.reduce((total, member) => {
+    return total + member.agility}
+    , 0);
+}
+
   return (
     <>
     <h1>Zombie Fighters</h1>
     <h3>Money: {money}</h3>
     <h3>Team Strength: {getTotalStrength()} </h3>
-    <h3>Team Agility: </h3>
+    <h3>Team Agility: {getTotalAgility()}</h3>
     <h3>Team:</h3>
 {team && team.length > 0 ? (
   <ul>
