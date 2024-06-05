@@ -77,6 +77,8 @@ const App = () => {
       img: 'https://via.placeholder.com/150/602b9e',
     },
   ]);
+  const [totalStrength, setTotalStrength] = useState(0);
+
 
   function handleAddFighter(index) {
     //Get selectedFighter
@@ -92,22 +94,41 @@ const App = () => {
     const newTeam = structuredClone(team);
     //Push the index of the chosen fighter to that array
     newTeam.push(selectedFighter);
-    //Set
+    //Set statuses
     setMoney(latestFunds);
     setTeam(newTeam);
     }
   }
 
+//Stuck with reduce to be able to have an initial value and a return value to call within the jsx return (was having issues with lag with my other solutions)
+ function getTotalStrength() {
+  return team.reduce((total, member) => {
+    return total + member.strength}
+    , 0);
+}
+
   return (
     <>
     <h1>Zombie Fighters</h1>
     <h3>Money: {money}</h3>
-    <h3>Team Strength: </h3>
+    <h3>Team Strength: {getTotalStrength()} </h3>
     <h3>Team Agility: </h3>
     <h3>Team:</h3>
-    {team.map((member, index) => {
-      return <li key={index}>{member.name}</li>
-    })}
+{team && team.length > 0 ? (
+  <ul>
+    {team.map((member, index) => (
+      <div key={index}>
+        <li><img src={member.img} /></li>
+        <li><b>{member.name}</b></li>
+        <li>{member.price}</li>
+        <li>{member.strength}</li>
+        <li>{member.agility}</li>
+      </div>
+    ))}
+  </ul>
+) : (
+  <p>Pick some team members!</p>
+)}
     <h3>Fighters:</h3>
     <ul>
       {zombieFighters.map((fighter, index) => {
