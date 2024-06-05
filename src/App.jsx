@@ -100,6 +100,18 @@ const App = () => {
     }
   }
 
+  function handleRemoveFighter(index) {
+    //Clone team state array
+    const newTeam = structuredClone(team);
+    //Get selectedFighterPrice
+    let selectedFighterPrice = newTeam[index].price;
+    //Splice
+    newTeam.splice(index, 1);
+    //Set
+    setTeam(newTeam)
+    setMoney(money + selectedFighterPrice)
+  }
+
 //Stuck with reduce to be able to have an initial value and a return value to call within the jsx return (was having issues with lag with my other solutions)
 //I appreciate I'm not actually updating state here though, only displaying what I need on the UI ... 
  function getTotalStrength() {
@@ -132,6 +144,7 @@ function getTotalAgility() {
         <li>{member.price}</li>
         <li>{member.strength}</li>
         <li>{member.agility}</li>
+        <button onClick={() => handleRemoveFighter(index)}>Remove</button>
       </div>
     ))}
   </ul>
