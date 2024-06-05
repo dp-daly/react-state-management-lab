@@ -77,6 +77,8 @@ const App = () => {
       img: 'https://via.placeholder.com/150/602b9e',
     },
   ]);
+  //! Not currently using/updating this state, only updating UI 
+  //! Need to refactor
   const [totalStrength, setTotalStrength] = useState(0);
 
 
